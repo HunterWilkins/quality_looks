@@ -1,0 +1,24 @@
+ a {
+    color:rgb(143, 201, 194);
+    text-decoration: underline;
+}
+
+h1 {
+    margin: 10px;
+    text-align: center;
+}
+
+#post-welcome {
+    max-width: 400px;
+    min-width: 200px;
+}
+
+p {
+
+    line-height: 1.5em;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+
+}
+

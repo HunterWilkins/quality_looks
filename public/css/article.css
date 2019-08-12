@@ -1,0 +1,24 @@
+#article-title {
+    color:rgb(143, 201, 194);
+    font-style: italic;
+}
+
+#subtitle {
+    text-align:center;
+}
+
+#score {
+    text-align:center;
+}
+
+#body {
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5em;
+}
+
+@media only screen and (max-width: 400px) {
+    #main {
+        text-align: left;
+    }
+}
