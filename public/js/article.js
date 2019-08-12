@@ -23,6 +23,7 @@ $(document).ready(function(){
     }
 
     $.getJSON("/article/" + article + "", function(data) {
+        console.log(data);
         displayData(data);
     });
 

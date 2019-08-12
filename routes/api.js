@@ -1,37 +1,29 @@
 module.exports = function(app) {
     var mongojs = require("mongojs");
+    const mongoose = require("mongoose");
 
     var databaseUrl = "qldb";
     var collections = ["reviews", "comments"]
 
-    var db = mongojs(databaseUrl, collections);
-
-    db.on("error", function(error) {
-        console.log("Mongo Database Error: ", error);
-    });
+    var db = require("../models");
     
     app.get("/all", function(req,res){
-        db.reviews.find({}, function(error, found){
-            if (error) {
-                console.log(error);
-            }
-
-            else {
-                res.json(found);
-            }
+        db.Review.find({})
+        .then(function(dbReview){
+            res.json(dbReview);
+        }).catch(function(err){
+            res.json(err);
         });
     });
 
     app.get("/article/:id", function(req, res) {
-        db.reviews.find({
+        db.Review.find({
             "Id": req.params.id
-        }, function(error, found) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                res.json(found);
-            }
+        })
+        .then(function(dbReview) {
+            res.json(dbReview);
+        }).catch(function(err){
+            res.json(err);
         });
     });
 
@@ -39,13 +31,11 @@ module.exports = function(app) {
         if (req.body.title != ""){
             console.log(req.body);
 
-            db.reviews.insert(req.body, function(error, saved) {
-                if (error) {
-                    console.log(error);
-                }
-                else {
-                    res.send(saved);
-                }
+            db.Review.create(req.body)
+            .then(function(dbReview) {
+                res.json(dbReview);
+            }).catch(function(err){
+                res.json(err);
             });
         }
         else {
