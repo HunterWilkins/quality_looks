@@ -10,7 +10,6 @@ h1 {
 
 #post-welcome {
     max-width: 400px;
-    min-width: 200px;
 }
 
 p {
@@ -19,6 +18,13 @@ p {
     max-width: 500px;
     min-width: 300px;
     margin: 0 auto;
-
 }
 
+
+@media only screen and (max-width: 400px) {
+    p, #post-welcome {
+        width: 100%;
+        max-width: initial;
+        min-width: initial;
+    }
+}
