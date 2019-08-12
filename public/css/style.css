@@ -87,6 +87,7 @@ nav a {
     border-radius:2px;
 }
 
+
 #main {
     position:fixed;
     top:0;
@@ -95,7 +96,8 @@ nav a {
     right:5px;
     background:rgb(26,26,26);
     padding:20px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #devtool {
