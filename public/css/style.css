@@ -99,7 +99,7 @@ nav a {
     position:fixed;
     top:0;
     left:120px;
-    bottom:0;
+    height: 100vh;
     right:5px;
     background:rgb(26,26,26);
     padding:20px;
