@@ -170,6 +170,7 @@ nav a {
         text-align: justify;
         padding: 15px 30px;
         width: 100%;
+        z-index:10;
     }
 
     nav {
