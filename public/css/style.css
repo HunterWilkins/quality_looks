@@ -153,6 +153,7 @@ nav a {
 }
 
 #show-devtool {
+    display:none;
     height: 50px;
     width:50px;
     position: fixed;
