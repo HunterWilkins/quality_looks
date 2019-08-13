@@ -10,12 +10,12 @@
 #score {
     text-align:center;
 }
-
+/* 
 #body {
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.5em;
-}
+} */
 
 
 @media only screen and (max-width: 400px) {
