@@ -15,12 +15,10 @@
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.5em;
-}
-
-#main {
-    overflow-y: scroll;
+    overflow-y:scroll;
     -webkit-overflow-scrolling: touch;
 }
+
 
 @media only screen and (max-width: 400px) {
     #main {
