@@ -22,6 +22,7 @@
 
 @media only screen and (max-width: 400px) {
     #main {
+        bottom: 100px;
         text-align: left;
         overflow-y:scroll;
         -webkit-overflow-scrolling: touch;
