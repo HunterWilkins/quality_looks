@@ -86,7 +86,7 @@ nav a {
     background:white;
     border-radius:2px;
 }
-/* 
+
 
 #main {
     position:fixed;
@@ -98,7 +98,7 @@ nav a {
     padding:20px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-} */
+}
 
 #devtool {
     display:none;
