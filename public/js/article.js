@@ -14,11 +14,13 @@ $(document).ready(function(){
             let toHTMLText = data.text.split("\n").join("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
             toHTMLText = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + toHTMLText;
             toHTMLText = toHTMLText.split("~").join("<hr>");
+
+            let pureText = data.text;
     
             $("#article-title").text(data.title);
             $("#subtitle").text(data.subtitle);
             $("#score").text(data.score + "/10");
-            $("#body").text(data.text);
+            $("#body").text(pureText);
         });
     }
 
