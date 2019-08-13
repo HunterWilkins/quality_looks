@@ -2,6 +2,12 @@ h1 {
     text-align:center;
 }
 
+
+#main {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
 .review {
     cursor:pointer;
     position: relative;
