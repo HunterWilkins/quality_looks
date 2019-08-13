@@ -19,9 +19,9 @@
 
 
 @media only screen and (max-width: 400px) {
-    #main {
+    /* #main {
         text-align: left;
         overflow-y:scroll;
         -webkit-overflow-scrolling: touch;
-    }
+    } */
 }
