@@ -1,6 +1,17 @@
 $(document).ready(function() {
 
-    console.log("Connected to Logic");
+    let mobile = false;
+
+
+    $(window).resize(function(){
+        console.log(mobile);
+        if ($(window).width() < 400) {
+            mobile = true;
+        }
+        else {
+            mobile = false;
+        }
+    });
 
     function displayData(data) {
         $("#reviews-list").empty();
@@ -45,6 +56,7 @@ $(document).ready(function() {
                 </a>
                 `
             );
+            
         });
     }
 

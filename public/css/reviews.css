@@ -2,12 +2,6 @@ h1 {
     text-align:center;
 }
 
-
-#main {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-
 .review {
     cursor:pointer;
     position: relative;
@@ -54,4 +48,56 @@ h1 {
     transform: translate(-50%, -50%);
     top:50%;
     left:50%;
+}
+
+@media only screen and (max-width: 400px) {
+
+    /* Disable hover functionality */
+    .review:hover .inner {
+        transform: none;
+    }
+
+    .front {
+        padding: 5px;
+        background: rgba(66,66,66,0);
+    }
+
+    .rev-title {
+        text-align:left;
+        font-style:italic;
+        font-size:18px;
+        position: initial;
+        top:initial;
+        left:initial;
+        transform: none;
+        width: 100%;
+    }
+
+    .back {
+        transform: none;
+        backface-visibility: visible;
+    }
+
+    p, h3 {
+        text-shadow: 0 2px 2px black;
+    }
+
+    .score {
+        display:none;
+    }
+
+    .subtitle {
+        position: absolute;
+        bottom:5px;
+        right: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width:90%;
+        text-align:right;
+        padding: 5px;
+
+    }
+
+
 }
