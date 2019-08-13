@@ -18,7 +18,7 @@ $(document).ready(function(){
             $("#article-title").text(data.title);
             $("#subtitle").text(data.subtitle);
             $("#score").text(data.score + "/10");
-            $("#body").text(toHTMLText);
+            $("#body").text(data.text);
         });
     }
 
