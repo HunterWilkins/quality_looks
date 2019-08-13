@@ -161,7 +161,7 @@ nav a {
     left: 0;
     z-index:10;
 }
-
+/* 
 @media only screen and (max-width: 400px) {
     #main {
         left: 0;
@@ -207,5 +207,5 @@ nav a {
     }
 
 
-}
+} */
 
