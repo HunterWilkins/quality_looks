@@ -20,7 +20,7 @@ $(document).ready(function(){
             $("#article-title").text(data.title);
             $("#subtitle").text(data.subtitle);
             $("#score").text(data.score + "/10");
-            $("#main").append(toHTMLText);
+            $("#body").html(toHTMLText);
         });
     }
 
