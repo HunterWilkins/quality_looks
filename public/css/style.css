@@ -97,7 +97,7 @@ nav a {
     background:rgb(26,26,26);
     padding:20px;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    /* -webkit-overflow-scrolling: touch; */
 }
 
 #devtool {
