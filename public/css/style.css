@@ -96,7 +96,7 @@ nav a {
 
 
 #main {
-    position:fixed;
+    position:absolute;
     top:0;
     left:120px;
     height: 100vh;
