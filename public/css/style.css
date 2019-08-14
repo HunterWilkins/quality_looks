@@ -51,8 +51,10 @@ a {
 }
 
 body {
-    background:rgb(66,66,66);  
+    background:rgb(33,66,66);  
     color:white;
+
+    transition: background 1s;
 }
 
 nav {
@@ -63,25 +65,40 @@ nav {
     width:120px;
     text-align:center;
     z-index:5;
-    padding: 5px;
+    padding: 0px;
+
+    transition: background 1s;
+}
+
+nav > * {
+    transition: background 1s;
 }
 
 nav h2 {
+    padding: 5px;
     width: 100%;
 }
 
 nav a {
     cursor:pointer;
-    width: 100%;
-    background:rgb(26,26,26);
+    width: 90%;
+    background:rgb(16,26,26);
     color:white;
     border:none;
     font-size:16px;
     display:inline-block;
     text-decoration: none;
 
+    border-radius:30px;
+
     margin: 10px auto;
     padding:5px;
+    transition: width .15s, border-radius .15s, background 1s;
+}
+
+nav a:hover {
+    width: 100%;
+    border-radius: 0;
 }
 
 ::-webkit-scrollbar {
@@ -94,19 +111,18 @@ nav a {
     border-radius:2px;
 }
 
-
-
 #main {
     position:absolute;
     top:0;
     left:120px;
     height: 100vh;
     right:5px;
-    background:rgb(26,26,26);
+    background:rgb(6,26,26);
     padding:20px;
     overflow-y: scroll;
     font-size: 16px;
     -webkit-overflow-scrolling: touch;
+    transition: background 1s;
 }
 
 body {
@@ -213,7 +229,7 @@ body {
         width: 100%;
         height: 35px;
         padding: 5px;
-        background: rgb(66, 66, 66);
+        background: rgb(33, 66, 66);
     }
 
     nav a {
@@ -222,6 +238,11 @@ body {
         margin: 0;
         transform: translateY(-50%);
         top: 50%;
+    }
+
+    nav a:hover {
+        width: 31%;
+        border-radius: 30px;
     }
 
 

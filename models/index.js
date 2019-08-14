@@ -1,3 +1,4 @@
 module.exports = {
-    Review: require("./reviewsModel")
+    Review: require("./reviewsModel"),
+    Lecture: require("./lecturesModel")
 }

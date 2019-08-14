@@ -1,6 +1,8 @@
 #article-title {
     color:rgb(143, 201, 194);
     font-style: italic;
+
+    transition: 1s;
 }
 
 #subtitle {

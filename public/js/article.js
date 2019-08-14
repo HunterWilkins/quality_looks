@@ -1,10 +1,28 @@
 $(document).ready(function(){
-    console.log("Success");
+
+    let colorScheme = {
+        good: 
+        {
+            medium: "rgb(33, 50, 10)", 
+            dark: "rgb(8, 20, 2)", 
+            light: "rgb(200, 220, 16)"
+        },
+        meh: {
+            medium: "rgb(100, 70, 33)",
+            dark: "rgb(44, 33, 20)",
+            light: "rgb(250, 200, 80)"
+        },
+        bad: {
+            medium: "rgb(100, 25, 10)", 
+            dark: "rgb(16, 8, 2)",
+            light: "rgb(250, 100, 70)"
+        }
+    }
 
     let article = window.location.pathname.split("/")[2];
     let title;
 
-    
+
 
     function displayData(data) {
         title = data.title;
@@ -25,7 +43,23 @@ $(document).ready(function(){
     }
 
     $.getJSON("/article/" + article + "", function(data) {
-        console.log(data);
+        let color;
+        let score = data[0].score;
+        if (score < 5) {
+            color = colorScheme.bad;
+        }
+        else if (score >= 5 && score < 8) {
+            color = colorScheme.meh;
+        }
+
+        else if (score > 7) {
+            color = colorScheme.good;
+        }
+
+        $("#main, body, nav a").css({"background" : color.dark});
+        $("nav, nav h2").css({"background" : color.medium});
+        $("#article-title").css({"color":color.light});
+
         displayData(data);
     });
 

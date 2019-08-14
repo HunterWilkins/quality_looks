@@ -11,4 +11,8 @@ module.exports = function(app) {
     app.get("/reviews/:id", function(req, res) {
         res.render("article");
     });
+
+    app.get("/school", function(req, res){
+        res.render("lectures");
+    });
 }
