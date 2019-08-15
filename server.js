@@ -13,6 +13,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
+app.use(require("express-session")({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false
+}));
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+
 const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");

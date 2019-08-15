@@ -19,21 +19,27 @@ $(document).ready(function() {
     });
 
     $("#dev-submit").on("click", function(event) {
-        event.preventDefault();
+        event.preventDefault();      
+        let reviewInfo = {
+            Id: reviewCount,
+            title: $("#art-title").val(),
+            subtitle: $("#art-subtitle").val(),
+            type: $("#art-type").val(),
+            score: $("#art-score").val(),
+            text: $("#art-text").val()
+        }   
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/submit",
+                data: { 
+                    username : $("#username").val(),
+                    password : $("#password").val(),
+                    reviewInfo : reviewInfo
+                }
+            });
         
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/submit",
-            data: {
-                Id: reviewCount,
-                title: $("#art-title").val(),
-                subtitle: $("#art-subtitle").val(),
-                type: $("#art-type").val(),
-                score: $("#art-score").val(),
-                text: $("#art-text").val()
-            }
-        });
     });
 
 });
