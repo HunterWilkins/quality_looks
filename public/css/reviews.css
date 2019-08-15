@@ -2,7 +2,7 @@ h1 {
     text-align:center;
 }
 
-.review {
+.review, .lecture {
     cursor:pointer;
     position: relative;
     max-width: 500px;
@@ -11,6 +11,21 @@ h1 {
     height:60px;
     border-radius:5px;
     perspective: 1000px;
+}
+
+.lecture {
+    background: rgb(33,66,66);
+}
+
+.lecture h3 {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top:50%;
+    width: 90%;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
 }
 
 .inner {

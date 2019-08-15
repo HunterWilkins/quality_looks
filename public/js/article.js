@@ -19,10 +19,11 @@ $(document).ready(function(){
         }
     }
 
-    let article = window.location.pathname.split("/")[2];
+    let type = window.location.pathname.split("/")[1];
+
+
+    let id = window.location.pathname.split("/")[2];
     let title;
-
-
 
     function displayData(data) {
         title = data.title;
@@ -32,17 +33,21 @@ $(document).ready(function(){
             let toHTMLText = data.text.split("\n").join("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
             toHTMLText = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + toHTMLText;
             toHTMLText = toHTMLText.split("~").join("<hr>");
-
-            let pureText = data.text;
     
             $("#article-title").text(data.title);
             $("#subtitle").text(data.subtitle);
-            $("#score").text(data.score + "/10");
+            $("#subtitle").append("<hr>");
+            if (data.type !== "lecture"){
+                $("#score").text(data.score + "/10");
+                $("#score").append("<hr>");
+            }
             $("#body").html(toHTMLText);
         });
     }
 
-    $.getJSON("/article/" + article + "", function(data) {
+
+    $.getJSON("/article/" + id + "", function(data) {
+        
         let color;
         let score = data[0].score;
         if (score < 5) {
@@ -62,5 +67,4 @@ $(document).ready(function(){
 
         displayData(data);
     });
-
 });

@@ -6,20 +6,20 @@ module.exports = function(app) {
     var collections = ["reviews", "lectures"]
 
     var db = require("../models");
-    
-    app.get("/all", function(req,res){
+
+    app.get("/all", function(req, res){
         db.Review.find({})
         .then(function(dbReview){
             res.json(dbReview);
         }).catch(function(err){
             res.json(err);
         });
-    });
+    })
 
-    app.get("/lectures", function(req,res) {
-        db.Lecture.find({})
-        .then(function(dbLecture){
-            res.json(dbLecture);
+    app.get("/all/:type", function(req,res){
+        db.Review.find({type: req.params.type})
+        .then(function(dbReview){
+            res.json(dbReview);
         }).catch(function(err){
             res.json(err);
         });
@@ -38,24 +38,12 @@ module.exports = function(app) {
 
     app.post("/submit", function(req, res) {
         if (req.body.title != ""){
-            if (req.body.type === "lecture") {
-                db.Lecture.create(req.body)
-                .then(function(dbLecture){
-                    res.json(dbLecture);
-                }).catch(function(err){
-                    res.json(err);
-                });
-            }
-
-            else {
-                db.Review.create(req.body)
-                .then(function(dbReview) {
-                    res.json(dbReview);
-                }).catch(function(err){
-                    res.json(err);
-                });
-            }
-            
+            db.Review.create(req.body)
+            .then(function(dbReview) {
+                res.json(dbReview);
+            }).catch(function(err){
+                res.json(err);
+            });
         }
         else {
             alert("YOU DIDN'T ADD A TITLE, IDIOT!");

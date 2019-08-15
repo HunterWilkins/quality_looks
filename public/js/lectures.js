@@ -1,6 +1,8 @@
 $(document).ready(function(){
     console.log("Logic running.");
     
+    let lecture = window.location.pathname.split("/")[2];
+
     function displayData(data) {
         $("#lecture-list").empty();
 

@@ -1,18 +1,13 @@
 $(document).ready(function() {
 
-    let mobile = false;
-
-
-    $(window).resize(function(){
-        console.log(mobile);
-        if ($(window).width() < 400) {
-            mobile = true;
-        }
-        else {
-            mobile = false;
-        }
-    });
-
+    let type = window.location.pathname.split("/")[2];
+    if (type === "lecture") {
+        $("#review-type").text("Lectures");
+    }
+    else {
+        $("#review-type").text(type.replace(type[0], type[0].toUpperCase()));
+    }
+    
     function displayData(data) {
         $("#reviews-list").empty();
 
@@ -25,42 +20,57 @@ $(document).ready(function() {
             let antiscorePercent = (10 - data.score) * 10;
 
             let color;
-            if (data.score < 5) {
-                color = bad;
-            }
-            else if (data.score == 5 && data.score < 8) {
-                color = meh;
-            }
-            else if (data.score >= 8) {
-                color = good;
-            }
-
-            $("#reviews-list").append(
-                `
-                <a href = "/reviews/${data.Id}">
-                <div class = "review">
-                <div class = "inner">
-                <div class = "front">
-                    <h3 class = "rev-title">${data.title}</h3>
-                </div>
-
-                <div class = "back"
-                style = "background: linear-gradient(to right, ${color[0]} 0%, ${color[0]} ${scorePercent}%, ${color[1]} ${scorePercent}%, ${color[1]} 100%);"
-                >
-                    <p class = "subtitle">"${data.subtitle}"</p>
-                    <p class = "score">${data.score}/10</p>
-                </div>
+            if (type === "lecture") {
+                $("#reviews-list").append(
+                    `
+                    <a href = "/essay/${data.Id}">
+                    <div class = "lecture">
+                        <h3 class = "rev-title">${data.title}</h3>
+                    </div>
                 
-                </div>
-                </div>
-                </a>
-                `
-            );
+                    </a>
+                    `
+                )
+            }
+            else {
+                if (data.score < 5) {
+                    color = bad;
+                }
+                else if (data.score == 5 && data.score < 8) {
+                    color = meh;
+                }
+                else if (data.score >= 8) {
+                    color = good;
+                }
+    
+                $("#reviews-list").append(
+                    `
+                    <a href = "/essay/${data.Id}">
+                    <div class = "review">
+                    <div class = "inner">
+                    <div class = "front">
+                        <h3 class = "rev-title">${data.title}</h3>
+                    </div>
+    
+                    <div class = "back"
+                    style = "background: linear-gradient(to right, ${color[0]} 0%, ${color[0]} ${scorePercent}%, ${color[1]} ${scorePercent}%, ${color[1]} 100%);"
+                    >
+                        <p class = "subtitle">"${data.subtitle}"</p>
+                        <p class = "score">${data.score}/10</p>
+                    </div>
+                    
+                    </div>
+                    </div>
+                    </a>
+                    `
+                );
+                
+            }
             
         });
     }
 
-    $.getJSON("/all", function(data){
+    $.getJSON("/all/" + type + "", function(data){
         displayData(data);
     });
 });
