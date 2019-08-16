@@ -88,27 +88,22 @@ module.exports = function(app) {
         }
     });
 
-    app.post("/delete", function(req, res){
-        if (req.body.reviewInfo.title != ""){
+    app.post("/delete", async(req, res) => {
+        if (req.body.title != ""){
             try {
-                let user = db.User.findOne({username: req.body.username}).exec();
+                let user = await db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
                 else {
                     console.log("Ohhhh nooOOOOoo...you want to delete something?" + 
                         "That must make you feel *teeeerrribleee*...is there aaaanything I" +
-                        "can doooo to make you feel better? Aaaaaaaaaannnyyyyythhhiiinnng???? ;3 <3"); // Um...yeah, I'm sorry.
-                    db.Review.deleteOne({title: req.body.reviewInfo.title})
-                    .then(function(dbReview) {
-                        res.json(dbReview);
-                    }).catch(function(err){
-                        res.json(err);
-                    });
+                        " can doooo to make you feel better? Aaaaaaaaaannnyyyyythhhiiinnng???? ;3 <3"); // Um...yeah, I'm sorry.
+                    db.Review.findOneAndDelete({title: req.body.title}).exec();
                 }
             }
             catch (error) {
-                res.status(500).send(error);
+                console.log(error);
             }
         }
     });

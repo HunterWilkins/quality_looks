@@ -18,9 +18,6 @@ $(document).ready(function() {
             score: $("#art-score").val(),
             text: $("#art-text").val()
         }   
-
-        console.log($("#password").val())
-
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -61,14 +58,6 @@ $(document).ready(function() {
     $("#delete").on("click", function(e){
         e.preventDefault();
 
-        let reviewInfo = {
-            Id: reviewCount,
-            subtitle: $("#art-subtitle").val(),
-            type: $("#art-type").val(),
-            score: $("#art-score").val(),
-            text: $("#art-text").val()
-        }   
-
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -76,8 +65,7 @@ $(document).ready(function() {
             data: {
                 title: $("#art-title").val(),
                 username : $("#username").val(),
-                password: $("#password").val(),
-                reviewInfo: reviewInfo
+                password: $("#password").val()
             }
         });
     });
