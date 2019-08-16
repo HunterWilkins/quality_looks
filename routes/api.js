@@ -37,10 +37,10 @@ module.exports = function(app) {
     // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
     // New Review Submission Route
-    app.post("/submit", async(req, res) => {
+    app.post("/submit", function (req, res) {
         if (req.body.username != ""){
             try {
-                let user = await db.User.findOne({username: req.body.username}).exec();
+                let user = db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
