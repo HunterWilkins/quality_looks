@@ -180,10 +180,18 @@ body {
 
 #devtool button {
     position: absolute;
-    bottom:0;
-    right: 0;
-    width: 50px;
+    width: 100px;
     height: 50px;
+}
+
+#delete {
+    left: 0;
+    bottom: 0;
+}
+
+#update {
+    right: 0;
+    bottom: 0;
 }
 
 #show-devtool {

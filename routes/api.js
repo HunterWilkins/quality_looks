@@ -37,10 +37,11 @@ module.exports = function(app) {
     // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
     // New Review Submission Route
-    app.post("/submit", function (req, res) {
-        if (req.body.username != ""){
+    app.post("/submit", async(req, res) => {
+        if (req.body.reviewInfo.title != ""){
             try {
-                let user = db.User.findOne({username: req.body.username}).exec();
+                console.log(req.body.password)
+                let user = await db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
@@ -55,10 +56,63 @@ module.exports = function(app) {
                 }
             }
             catch (error) {
+                console.log(error);
+            }
+        }
+    });
+
+    app.post("/update", async(req, res) => {
+        if (req.body.title != ""){
+            try {
+                let user = await db.User.findOne({username: req.body.username}).exec();
+                if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
+                    console.log("HA! No thanks, HACKERS!");
+                }
+                else {
+                    console.log("Made a mistake, did we? Well, we can't have that, now can we? ;3"); // Uhhhhhhhhh... don't read into this either.
+                    let newData = req.body.reviewInfo;
+                    let filter = {title: req.body.title};
+                    let update = {
+                        subtitle: newData.subtitle,
+                        text: newData.text,
+                        score: newData.score,
+                        type: newData.type
+                    }
+                    
+                    db.Review.findOneAndUpdate(filter, update).exec();
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+    });
+
+    app.post("/delete", function(req, res){
+        if (req.body.reviewInfo.title != ""){
+            try {
+                let user = db.User.findOne({username: req.body.username}).exec();
+                if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
+                    return res.status(400).send({message: "HA! Nice try, HACKERS!"});
+                }
+                else {
+                    console.log("Ohhhh nooOOOOoo...you want to delete something?" + 
+                        "That must make you feel *teeeerrribleee*...is there aaaanything I" +
+                        "can doooo to make you feel better? Aaaaaaaaaannnyyyyythhhiiinnng???? ;3 <3"); // Um...yeah, I'm sorry.
+                    db.Review.deleteOne({title: req.body.reviewInfo.title})
+                    .then(function(dbReview) {
+                        res.json(dbReview);
+                    }).catch(function(err){
+                        res.json(err);
+                    });
+                }
+            }
+            catch (error) {
                 res.status(500).send(error);
             }
         }
     });
+
 
     // Create New User *** ONLY TO BE USED ONCE: DELETE/COMMENT OUT IMMEDIATELY AFTER CREATING AUTH USER ***
     // app.post("/register", function (req, res) {
