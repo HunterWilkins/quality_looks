@@ -23,6 +23,6 @@ require("./routes/api")(app);
 require("./routes/html")(app);
 // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Listening in on " + PORT);
 });
