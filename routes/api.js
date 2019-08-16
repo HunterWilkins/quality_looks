@@ -61,13 +61,13 @@ module.exports = function(app) {
     });
 
     // Create New User *** ONLY TO BE USED ONCE: DELETE/COMMENT OUT IMMEDIATELY AFTER CREATING AUTH USER ***
-    app.post("/register", function (req, res) {
-        req.body.password = bcrypt.hashSync(req.body.password, 10);
-        db.User.create(req.body)
-        .then(function(dbUser) {
-            res.json(dbUser);
-        }).catch(function(err){
-            res.json(err);
-        });
-    });
+    // app.post("/register", function (req, res) {
+    //     req.body.password = bcrypt.hashSync(req.body.password, 10);
+    //     db.User.create(req.body)
+    //     .then(function(dbUser) {
+    //         res.json(dbUser);
+    //     }).catch(function(err){
+    //         res.json(err);
+    //     });
+    // });
 }
