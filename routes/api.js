@@ -37,7 +37,7 @@ module.exports = function(app) {
     // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
     // New Review Submission Route
-    app.post("/submit", async function(req, res) {
+    app.post("/submit", async(req, res) => {
         if (req.body.username != ""){
             try {
                 let user = await db.User.findOne({username: req.body.username}).exec();
