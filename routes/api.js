@@ -37,11 +37,10 @@ module.exports = function(app) {
     // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
     // New Review Submission Route
-    app.post("/submit", function (req, res) {
+    app.post("/submit", async (req, res) => {
         if (req.body.reviewInfo.title != ""){
             try {
-                console.log(req.body.password)
-                let user = db.User.findOne({username: req.body.username}).exec();
+                let user = await db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
@@ -61,10 +60,10 @@ module.exports = function(app) {
         }
     });
 
-    app.post("/update", function (req, res) {
+    app.post("/update", async (req, res) => {
         if (req.body.title != ""){
             try {
-                let user = db.User.findOne({username: req.body.username}).exec();
+                let user = await db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     console.log("HA! No thanks, HACKERS!");
                 }
