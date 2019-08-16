@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
-const PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 const app = express();
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/qldb"
 
@@ -23,6 +23,6 @@ require("./routes/api")(app);
 require("./routes/html")(app);
 // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(PORT, () => {
     console.log("Listening in on " + PORT);
 });
