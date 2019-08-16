@@ -42,4 +42,17 @@ $(document).ready(function() {
         
     });
 
+    $("#reg-submit").on("click", function(event){
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/register",
+            data: {
+                username: $("#reg-user").val(),
+                password: $("#reg-pass").val()
+            }
+        });
+    })
+
 });

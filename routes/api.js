@@ -1,14 +1,6 @@
 module.exports = function(app) {
-    var mongojs = require("mongojs");
-    const mongoose = require("mongoose");
     const bcrypt = require("bcryptjs");
-
-
-    var databaseUrl = "qldb";
-    var collections = ["reviews"]
-
     var db = require("../models");
-    var auth = require("../controllers/Auth");
 
     app.get("/all", function(req, res){
         db.Review.find({})
@@ -17,8 +9,10 @@ module.exports = function(app) {
         }).catch(function(err){
             res.json(err);
         });
-    })
+    });
 
+    // Displays all relevant reviews based on the href. =/=/=/=/=/=/=/ 
+    // Currently only two types: Art and Lecture. 
     app.get("/all/:type", function(req,res){
         db.Review.find({type: req.params.type})
         .then(function(dbReview){
@@ -27,7 +21,9 @@ module.exports = function(app) {
             res.json(err);
         });
     });
+    // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
+    // Displays the relevant article accessed by clicking the .review divs in reviews.handlebars =/=/=/=/=/
     app.get("/article/:id", function(req, res) {
         db.Review.find({
             "Id": req.params.id
@@ -38,19 +34,18 @@ module.exports = function(app) {
             res.json(err);
         });
     });
+    // =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
 
+    // New Review Submission Route
     app.post("/submit", async (req, res) => {
         if (req.body.username != ""){
             try {
                 let user = await db.User.findOne({username: req.body.username}).exec();
-                if (!user) {
+                if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
-                if (!bcrypt.compareSync(req.body.password, user.password)) {
-                    return res.status(400).send({message: "HA! IN YOUR FACE!"});
-                }
                 else {
-                    console.log("Welcome back, handsome. ;3 Let's add that review.");
+                    console.log("Welcome back, handsome. ;3 Let's add that review, shall we? *mwah*"); // Uhhhhhhhhh don't read into this
                     db.Review.create(req.body.reviewInfo)
                     .then(function(dbReview) {
                         res.json(dbReview);
@@ -62,28 +57,17 @@ module.exports = function(app) {
             catch (error) {
                 res.status(500).send(error);
             }
-            
-        }
-        else {
-            alert("YOU DIDN'T ADD A TITLE, IDIOT!");
         }
     });
 
+    // Create New User *** ONLY TO BE USED ONCE: DELETE/COMMENT OUT IMMEDIATELY AFTER CREATING AUTH USER ***
     app.post("/register", async (req, res) => {
-            req.body.password = bcrypt.hashSync(req.body.password, 10);
-            db.User.create(req.body)
-            .then(function(dbUser) {
-                res.json(dbUser);
-            }).catch(function(err){
-                res.json(err);
-            })
-            // let user = new db.User(req.body);
-            // let result = await user.save();
-            // res.send("result");
-    })
-    app.post("/login", async (req, res) => {
-        
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        db.User.create(req.body)
+        .then(function(dbUser) {
+            res.json(dbUser);
+        }).catch(function(err){
+            res.json(err);
+        });
     });
-
-
 }

@@ -8,11 +8,11 @@ module.exports = function(app) {
         res.render("reviews");
     });
 
-    app.get("/school", function(req, res){
-        res.render("lectures");
-    });
-
     app.get("/essay/:id", function(req, res){
         res.render("article");
+    });
+
+    app.get("*", function(req, res) {
+        res.render("home");
     })
 }
