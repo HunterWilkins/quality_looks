@@ -88,10 +88,10 @@ module.exports = function(app) {
         }
     });
 
-    app.post("/delete", function (req, res) {
+    app.post("/delete", async (req, res) => {
         if (req.body.title != ""){
             try {
-                let user = db.User.findOne({username: req.body.username}).exec();
+                let user = await db.User.findOne({username: req.body.username}).exec();
                 if (!user || !bcrypt.compareSync(req.body.password, user.password)) { // If the username or password doesn't match up, prevent entry.
                     return res.status(400).send({message: "HA! Nice try, HACKERS!"});
                 }
