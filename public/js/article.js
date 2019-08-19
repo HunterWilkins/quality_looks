@@ -8,8 +8,8 @@ $(document).ready(function(){
             light: "rgb(200, 220, 16)"
         },
         meh: {
-            medium: "rgb(100, 70, 33)",
-            dark: "rgb(44, 33, 20)",
+            medium: "rgb(70, 50, 20)",
+            dark: "rgb(20, 13, 2)",
             light: "rgb(250, 200, 80)"
         },
         bad: {
