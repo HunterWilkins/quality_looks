@@ -142,7 +142,7 @@ body {
     right:0;
     bottom:0;
     background: rgba(26,26,26, .75);
-    z-index: 2;
+    z-index: 8;
 }
 
 #devtool form {
@@ -151,7 +151,7 @@ body {
     top:50%;
     left: 50%;
     z-index:5;
-    width:600px;
+    max-width:600px;
     height:600px;
     background:rgb(99, 97, 97);
     text-align:center;
@@ -179,19 +179,33 @@ body {
 }
 
 #devtool button {
+    cursor: pointer;
     position: absolute;
-    width: 100px;
+    width: 80px;
     height: 50px;
+    background:rgb(16,26,26);
+    border: none;
+    color: white;
 }
 
 #delete {
+    border-top-right-radius: 5px;
     left: 0;
     bottom: 0;
 }
 
 #update {
+    border-top-left-radius: 5px;
     right: 0;
     bottom: 0;
+}
+
+#dev-submit {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    transform: translateX(-50%);
+    bottom: 0;
+    left: 50%;
 }
 
 #show-devtool {
