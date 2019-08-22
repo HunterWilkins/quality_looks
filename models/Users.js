@@ -7,8 +7,16 @@ let UserSchema = new Schema ({
         type: String
     },
 
+    secretName: {
+        type: String
+    },
+
     password: {
         type:String
+    },
+
+    secretId: {
+        type: String
     }
 });
 

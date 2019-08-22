@@ -10,25 +10,6 @@ $(document).ready(function() {
 
     // First Username Pass
 
-    $("#devlink-submit").on("click", function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/api/login",
-            data: {
-                username: $("#user").val(),
-                password: $("#pass").val()
-            },
-            success: function(){
-                window.open("devtool.handlebars");
-            },
-            error: function(){
-                window.location.replace("/");
-            }
-        });
-    });
-
     $("#dev-submit").on("click", function(event) {
         event.preventDefault();      
         let reviewInfo = {

@@ -28,9 +28,25 @@ module.exports = function(app) {
     });
 
     
-    app.get("/login", function (req, res) {
-        res.render("devtool");
-    });
+    app.get("/pig/:user/:id", async (req, res) => {
+      
+        try {
+            let user = await db.User.find({secretName: req.params.user}).exec();
+            console.log(user);
+            if ( !user || !bcrypt.compareSync(req.params.id, user[0].secretId)){
+                res.render("home");
+            }
+            else {
+                res.render("devtool");
+            }
+        }
+
+        catch(err) {
+            console.log(err)
+        }
+       
+        
+    })
 
 
     app.get("/devtool", function(req, res){

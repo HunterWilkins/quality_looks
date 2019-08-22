@@ -2,34 +2,6 @@ module.exports = function(app) {
     const bcrypt = require("bcryptjs");
     var db = require("../models");
 
-    const passport = require("passport");
-    const LocalStrategy = require("passport-local").Strategy;
-
-    passport.use(new LocalStrategy(function(username, password, done){
-        db.User.findOne({username})
-        .then(user => {
-            if (!user || !user.validatePassword(password)) {
-                done(null, false, {message: "Ha! Nice try, hackers!"});
-            }
-
-            else {
-                done(null, user);
-            }
-        }).catch(e => done(e));
-    }));
-
-    const loggedInOnly = (req, res, next) => {
-        if (req.isAuthenticated()) next();
-        else {
-            res.redirect("/devtool");
-        }
-    }
-
-    const loggedOutOnly = (req, res, next) => {
-        if (req.isUnauthenticated()) next();
-        else res.redirect("/");
-    }
-
     app.get("/all", function(req, res){
         db.Review.find({})
         .then(function(dbReview){
@@ -136,13 +108,14 @@ module.exports = function(app) {
     });
 
     // Create New User *** ONLY TO BE USED ONCE: DELETE/COMMENT OUT IMMEDIATELY AFTER CREATING AUTH USER ***
-    // app.post("/register", function (req, res) {
-    //     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    //     db.User.create(req.body)
-    //     .then(function(dbUser) {
-    //         res.json(dbUser);
-    //     }).catch(function(err){
-    //         res.json(err);
-    //     });
-    // });
+    app.post("/register", function (req, res) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        req.body.secretId = bcrypt.hashSync(req.body.secretId, 12);
+        db.User.create(req.body)
+        .then(function(dbUser) {
+            res.json(dbUser);
+        }).catch(function(err){
+            res.json(err);
+        });
+    });
 }
