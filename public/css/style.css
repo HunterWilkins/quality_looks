@@ -134,8 +134,13 @@ body {
     bottom:0;
 }
 
+#dev-link input {
+    width: 45%;
+    padding: 5px;
+}
+
 #devtool {
-    display:none;
+    display:block;
     position: fixed;
     top: 0;
     left:0;

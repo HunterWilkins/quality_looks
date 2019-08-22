@@ -1,5 +1,6 @@
 module.exports = function(app) {
     var db = require("../models");
+    const bcrypt = require("bcryptjs");
 
 
     app.get("/", function(req, res) {
@@ -14,7 +15,6 @@ module.exports = function(app) {
         else {
             res.render("catch");
         }
-        
     });
 
     app.get("/essay/:id", async(req, res) => {
@@ -26,6 +26,16 @@ module.exports = function(app) {
             res.render("home");
         }
     });
+
+    
+    app.get("/login", function (req, res) {
+        res.render("devtool");
+    });
+
+
+    app.get("/devtool", function(req, res){
+        res.render("devtool");
+    })
 
     app.get("*", function(req, res) {
         res.render("home");

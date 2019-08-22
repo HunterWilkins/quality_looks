@@ -30,7 +30,7 @@ $(document).ready(function() {
                 
                     </a>
                     `
-                )
+                );
             }
             else {
                 if (data.score < 5) {
