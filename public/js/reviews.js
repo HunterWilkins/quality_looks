@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         data.forEach(function(data){
 
-            let good = ["rgb(86, 148, 8)", "rgb(59, 145, 11)"];
+            let good = ["rgb(86, 148, 8)", "rgb(59, 100, 11)"];
             let meh = ["rgb(209, 148, 22)", "rgb(179, 91, 6)"];
             let bad = ["rgb(194, 54, 11)", "rgb(111, 13, 3)"]
             let scorePercent = (data.score/10) * 100;
