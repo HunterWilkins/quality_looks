@@ -17,8 +17,6 @@ $(document).ready(function() {
             let meh = ["rgb(209, 148, 22)", "rgb(179, 91, 6)"];
             let bad = ["rgb(194, 54, 11)", "rgb(111, 13, 3)"]
             let scorePercent = (data.score/10) * 100;
-            let antiscorePercent = (10 - data.score) * 10;
-
             let color;
             if (type === "lecture") {
                 $("#reviews-list").append(
