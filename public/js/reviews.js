@@ -31,12 +31,14 @@ $(document).ready(function() {
                 );
             }
             else {
+                console.log(data.score);
                 if (data.score < 5) {
                     color = bad;
                 }
-                else if (data.score == 5 && data.score < 8) {
+                else if (data.score >= 5 && data.score < 8) {
                     color = meh;
                 }
+                
                 else if (data.score >= 8) {
                     color = good;
                 }

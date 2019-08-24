@@ -32,7 +32,6 @@ module.exports = function(app) {
       
         try {
             let user = await db.User.find({secretName: req.params.user}).exec();
-            console.log(user);
             if ( !user || !bcrypt.compareSync(req.params.id, user[0].secretId)){
                 res.render("home");
             }

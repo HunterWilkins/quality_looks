@@ -11,7 +11,9 @@ $(document).ready(function() {
     // First Username Pass
 
     $("#dev-submit").on("click", function(event) {
-        event.preventDefault();      
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
         let reviewInfo = {
             Id: reviewCount,
             title: $("#art-title").val(),
@@ -20,16 +22,17 @@ $(document).ready(function() {
             score: $("#art-score").val(),
             text: $("#art-text").val()
         }   
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "/submit",
-                data: { 
-                    username : $("#username").val(),
-                    password : $("#password").val(),
-                    reviewInfo : reviewInfo
-                }
-            });
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/submit",
+            data: { 
+                username : $("#username").val(),
+                password : $("#password").val(),
+                reviewInfo : reviewInfo
+            }
+        });
+        return false;
     });
 
     $("#update").on("click", function(e){
