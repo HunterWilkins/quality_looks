@@ -30,7 +30,7 @@ a {
 }
 
 
-@media screen and (max-width: 400px), screen and (max-height: 400px) {
+@media screen and (max-width: 400px), screen and (max-height: 500px) {
     #main {
         text-align: left;
     }
@@ -45,7 +45,7 @@ a {
 
     img {
         max-height: 100%;
-        width: initial;
+        width: 100%;
     }
 
 }
