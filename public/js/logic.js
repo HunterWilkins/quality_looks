@@ -38,25 +38,39 @@ $(document).ready(function() {
     $("#update").on("click", function(e){
         e.preventDefault();
 
-        let reviewInfo = {
-            Id: reviewCount,
-            subtitle: $("#art-subtitle").val(),
-            type: $("#art-type").val(),
-            score: $("#art-score").val(),
-            text: $("#art-text").val()
-        }   
+        if ($("#art-text").val() === "") {             
+            $.getJSON("/all", function(data){
+                data.forEach(data => {
+                    if (data.title === $("#art-title").val()){
+                        $("#art-text").val(data.text);
+                    }
+                })
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/update",
-            data: {
-                title: $("#art-title").val(),
-                username : $("#username").val(),
-                password: $("#password").val(),
-                reviewInfo: reviewInfo
-            }
-        });
+        else {
+
+            let reviewInfo = {
+                Id: reviewCount,
+                subtitle: $("#art-subtitle").val(),
+                type: $("#art-type").val(),
+                score: $("#art-score").val(),
+                text: $("#art-text").val()
+            }   
+    
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/update",
+                data: {
+                    title: $("#art-title").val(),
+                    username : $("#username").val(),
+                    password: $("#password").val(),
+                    reviewInfo: reviewInfo
+                }
+            });
+        }
+        
     });
 
     

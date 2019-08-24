@@ -25,6 +25,10 @@ img {
     width: 100%;
 }
 
+a {
+    color: rgb(143, 201, 194);
+}
+
 
 @media only screen and (max-width: 400px) {
     #main {
