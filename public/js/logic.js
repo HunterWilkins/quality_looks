@@ -43,6 +43,9 @@ $(document).ready(function() {
                 data.forEach(data => {
                     if (data.title === $("#art-title").val()){
                         $("#art-text").val(data.text);
+                        $("#art-subtitle").val(data.subtitle);
+                        $("#art-type").val(data.type);
+                        $("#art-score").val(data.score);
                     }
                 })
             });
@@ -70,7 +73,6 @@ $(document).ready(function() {
                 }
             });
         }
-        
     });
 
     
