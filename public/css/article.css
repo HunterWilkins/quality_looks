@@ -45,7 +45,7 @@ a {
 
     img {
         max-height: 100%;
-        width: initial;
+        max-width: 100%;
     }
 
 }
