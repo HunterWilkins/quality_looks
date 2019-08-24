@@ -36,7 +36,7 @@ a {
     }
 
 
-    #wrapper {
+    .wrapper {
         display: block;
         text-align:center;
         height: 80vh;

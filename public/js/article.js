@@ -61,10 +61,14 @@ $(document).ready(function(){
             color = colorScheme.good;
         }
 
+        
+
         $("#main, body, nav a").css({"background" : color.dark});
         $("nav, nav h2").css({"background" : color.medium});
         $("#article-title").css({"color":color.light});
 
         displayData(data);
+
+        $("#body").find("img").wrap("<div class = 'wrapper'></div>");
     });
 });
