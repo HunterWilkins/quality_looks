@@ -30,8 +30,22 @@ a {
 }
 
 
-@media only screen and (max-width: 400px) {
+@media screen and (max-width: 400px), screen and (max-height: 400px) {
     #main {
         text-align: left;
     }
+
+
+    #wrapper {
+        display: block;
+        text-align:center;
+        height: 80vh;
+        width: 100%;
+    }
+
+    img {
+        max-height: 100%;
+        width: initial;
+    }
+
 }
